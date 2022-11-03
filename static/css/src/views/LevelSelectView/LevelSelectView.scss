@@ -1,0 +1,93 @@
+.LevelSelectView {
+	position: absolute;
+	height: 100%;
+	color: #fff6df;
+
+	.backArrow {
+		position: absolute;
+		left: 26px;
+		top: 26px;
+		cursor: pointer;
+		transform: translateX(-100px);
+	}
+
+	.centerContent {
+		position: absolute;
+		margin: auto auto;
+		width: 298px;
+		height: 400px;
+		left: calc(50% - 149px);
+		top: calc(50% - 160px);
+
+		.levels {
+			.level {
+				font-size: 28px;
+				width: 278px;
+				height: 64px;
+				border-radius: 30px;
+				color: $COLOR_MAIN_PRIMARY;
+				//background-color: $COLOR_MAIN_SECONDARY;
+				margin: 20px auto 0 auto;
+				line-height: 2.6;
+				cursor: pointer;
+				pointer-events: all;
+				overflow: hidden;
+				position: relative;
+				border: 1px solid #fff6df;
+
+				.innerBG {
+					//	overflow: hidden;
+					position: absolute;
+					//	display: block;
+					background-color: white;
+					width: 324px;
+					height: 360px;
+					top: -140px;
+					left: -0px;
+					border-radius: 50%;
+					transform: translateX(-360px) skewX(20deg);
+					pointer-events: none;
+				}
+
+				.innerText {
+					position: absolute;
+					width: 278px;
+					text-align: center;
+					top: -36px;
+					font-size: 50px;
+					z-index: 1;
+					color: #fff6df;
+					pointer-events: none;
+				}
+			}
+
+			.level1 {
+				left: 0px;
+			}
+
+			.level2 {
+				left: 40px;
+			}
+
+			.level3 {
+				left: -40px;
+			}
+
+			.level4 {
+				left: 10px;
+			}
+		}
+	}
+
+	.about {
+		position: absolute;
+		cursor: pointer;
+
+		text-align: center;
+		font-size: 36px;
+		color: $COLOR_MAIN_SECONDARY;
+		bottom: 40px;
+		left: calc(50% - 61px);
+		line-height: 8px;
+	}
+}

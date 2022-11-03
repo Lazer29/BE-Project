@@ -1,0 +1,96 @@
+.AboutView {
+	position: absolute;
+	height: 100%;
+	color: #fff6df;
+
+	.backArrow {
+		position: absolute;
+		left: 26px;
+		top: 26px;
+		cursor: pointer;
+		transform: translateX(-100px);
+	}
+
+	.scrollAbleContent {
+		overflow: auto;
+		height: 100vh;
+
+		.centerContent {
+			margin: 200px auto;
+			width: 700px;
+			height: 500px;
+
+			.headline {
+				color: $COLOR_MAIN_PRIMARY;
+				font-size: 60px;
+				line-height: 50px;
+				text-align: center;
+				margin-bottom: 60px;
+				margin-top: 60px;
+			}
+
+			.subHeader {
+				color: $COLOR_MAIN_PRIMARY;
+				font-size: 30px;
+				line-height: 40px;
+				text-align: center;
+				padding-bottom: 100px;
+			}
+
+			.handButtons {
+				display: flex;
+
+				.button {
+					font-size: 30px;
+					width: 197px;
+					height: 64px;
+					border-radius: 30px;
+					color: $COLOR_MAIN_PRIMARY;
+					//background-color: $COLOR_MAIN_SECONDARY;
+					margin: 11px auto 0 auto;
+					line-height: 2.2;
+					cursor: pointer;
+					pointer-events: all;
+					overflow: hidden;
+					position: relative;
+					//	border: 1px solid #fff6df;
+					background-color: $COLOR_MAIN_PRIMARY;
+
+					.innerBG {
+						//	overflow: hidden;
+						position: absolute;
+						//	display: block;
+						background-color: white;
+						width: 355px;
+						height: 344px;
+						top: -140px;
+						left: -0px;
+						border-radius: 50%;
+						transform: translateX(-360px) skewX(20deg);
+						pointer-events: none;
+					}
+
+					.innerText {
+						position: absolute;
+						width: 198px;
+						text-align: center;
+						top: 0px;
+						left: -0px;
+						font-size: 30px;
+						z-index: 1;
+						color: #fff6df;
+						pointer-events: none;
+					}
+				}
+
+				.leftHand {
+					left: 0px;
+				}
+
+				.rightHand {
+					left: 50px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Fingerspelling with Machine Learning</title>
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+
+    <meta property="og:title" content="Fingerspelling with Machine Learning" />
+    <meta property="og:site_name" content="Fingerspelling with Machine Learning" />
+    <meta property="og:url" content="https://fingerspelling.xyz" />
+    <meta property="og:description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fingerspelling.xyz/assets/meta.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hellomondaycom" />
+    <meta name="twitter:creator" content="@hellomondaycom" />
+    <meta name="twitter:title" content="Fingerspelling with Machine Learning" />
+    <meta name="twitter:description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+    <meta name="twitter:image" content="https://fingerspelling.xyz/assets/meta.png" />
+
+    <meta name="theme-color" content="#ffffff" />
+    <!-- <link rel="stylesheet" href="../static/css/bundle.css" />
+    <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bundle.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            (i[r] =
+                i[r] ||
+                function () {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+                (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-193026365-1', { storage: 'none' });
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <div class="ab">
+        <div class="about">
+            <!-- <a href="index.html" style="text-decoration: none;">
+                <h1>Human Computer Interaction</h1>
+            </a> -->
+            <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                <h1>Human Computer Interaction</h1>
+            </a>
+            <div class="grpImg"><img class="grp_photo" src="../static/img/Group_photo.jpeg" alt="Group 36"></div>
+            <p>
+                This is Final Year Project of Group 36 of Rajiv Gandhi Institute of Technology made by Vishal Yadav,
+                Samar Vishwakarma, Alok Yadav and Vaibhav Vijaywargiya under the guidance of Dr. Sharmila Rathod.
+            </p>
+            <p>
+                This is the project which will be useful for the persons with disabilities especially for deaf people
+                where they can learn and communicate with others using their hand gestures. These gestures are based on
+                American Sign, as according to the survey 3 out off 1000 people are deaf in US, hence we have used
+                American Sign and also it is globally accepted Sign Language.
+            </p>
+            <p>
+                This Project will be very much helpful for the deaf people.
+            </p>
+
+
+            <h2 class="heading_tech">Tech Stack Used</h2>
+            <div class="tech">
+                <div class="stack">
+                    <div class="stack-box">
+                        <!-- <img src="https://www.expert.ai/wp-content/uploads/2022/03/Machine-Learning-Definition.jpg" alt="Machine Learning"> -->
+                        <img src="https://imageio.forbes.com/specials-images/dam/imageserve/966248982/960x0.jpg?format=jpg&width=960"
+                            alt="Machine Learning">
+                        <p>
+                            Machine Learning is used for Building up the base for the project. Machine learning is a
+                            field of inquiry devoted to understanding and building methods that 'learn', that is,
+                            methods that leverage data to improve performance on some set of tasks.
+                        </p>
+                    </div>
+                    <div class="stack-box">
+                        <img src="https://yt3.ggpht.com/ytc/AMLnZu_8Rf063m9hsmDJnDEn26sy-5YYvDr5e2fJWr2O=s900-c-k-c0x00ffffff-no-rj"
+                            alt="Mediapipe">
+                        <p>
+                            MediaPipe offers open source cross-platform, customizable ML solutions for live and
+                            streaming media. Unlike power-hungry machine learning Frameworks, MediaPipe requires minimal
+                            resources. It is so tiny and efficient to work with it.
+                        </p>
+                    </div>
+                    <div class="stack-box">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/1200px-Flask_logo.svg.png"
+                            alt="Flask">
+                        <p>
+                            Flask is a web application framework written in Python. Armin Ronacher, who leads an
+                            international group of Python enthusiasts named Pocco, develops it. Flask is based on
+                            Werkzeug WSGI toolkit and Jinja2 template engine. Both are Pocco projects.
+                        </p>
+                    </div>
+                    <div class="stack-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV-RDFfx8lNFj1YBveyklHwoyjHv59lnExRrMz6670vcOkYKay0H2NCxV4he2VK61xHOI&usqp=CAU"
+                            alt="HTML">
+                        <p>
+                            HTML is the standard markup language for Web pages, which is used for making a skeleton for
+                            the websites which can be further design by CSS and can be provided some functionality using
+                            Javascript.
+                        </p>
+                    </div>
+                    <div class="stack-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtg89F8V_zkPM-EZvL9J35ufCuDUYA8YvTGcMHVBe5_6FEA9A_YzD7Lt8JB_S3wF8anY&usqp=CAU"
+                            alt="CSS">
+                        <p>
+                            CSS is the language we use to style an HTML document. CSS describes how HTML elements should
+                            be displayed. This is used to attract user and also helps users to interact easily with the
+                            websites.
+                        </p>
+                    </div>
+                    <div class="stack-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMhVndZ0ppruEg3AGIRcgZLuuLgm8YzCVw&usqp=CAU"
+                            alt="Javascript">
+                        <p>
+                            JavaScript is the world's most popular programming language. JavaScript is the programming
+                            language of the Web, with the help of Javascript we had provided functionality to the
+                            website basically it works as a brain of website.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acknowledgement">
+                <h2>Acknowledgement</h2>
+                <p>We wish to express our sincere gratitude to Dr. Sanjay U. Bokade, Principal and Prof. S. P. Khachane,
+                    H.O.D. of Department Computer Engineering of Rajiv Gandhi Institute of Technology for providing us
+                    an opportunity to do our project work on “Human Computer Interaction”. This project bears on imprint
+                    of many peoples. We sincerely thank our project guide Dr. Sharmila Rathod for her guidance and
+                    encouragement in carrying out this synopsis work. Finally, we would like to thank our colleagues and
+                    friends who helped us in completing project work successfully</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

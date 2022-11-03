@@ -1,0 +1,144 @@
+#Preloader {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	visibility: hidden;
+
+	.home {
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+
+		.instructionText {
+			font-size: 30px;
+			position: absolute;
+			top: 50vh;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+
+			.line1 {
+				color: #ffffff;
+				//max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.line2 {
+				font-size: 25px;
+				line-height: 1.17;
+				max-width: 600px;
+				margin: 0 auto 20px;
+				margin-top: -10px;
+			}
+
+			.line3 {
+				font-size: 18px;
+				line-height: 1.2;
+				max-width: 550px;
+				margin: 17px auto 20px auto;
+			}
+
+			.allowWebcamButton {
+				font-size: 28px;
+				width: 324px;
+				height: 64px;
+				border-radius: 30px;
+				color: $COLOR_MAIN_PRIMARY;
+				background-color: $COLOR_MAIN_SECONDARY;
+				margin: 40px auto 0 auto;
+				line-height: 2.2;
+				cursor: pointer;
+				pointer-events: all;
+				overflow: hidden;
+				position: relative;
+
+				.innerBG {
+					//	overflow: hidden;
+					position: absolute;
+					//	display: block;
+					background-color: white;
+					width: 340px;
+					height: 344px;
+					top: -140px;
+					left: -0px;
+					border-radius: 50%;
+					transform: translateX(-360px) skewX(20deg);
+					pointer-events: none;
+				}
+
+				.innerText {
+					position: absolute;
+					width: 324px;
+					text-align: center;
+					top: 0px;
+					z-index: 1;
+					pointer-events: none;
+				}
+			}
+		}
+
+		.bottomText {
+			display: block;
+			position: absolute;
+			bottom: 40px;
+
+			width: 100%;
+			text-align: center;
+			font-size: 14px;
+			line-height: 1.43;
+
+			.innerText {
+				margin: 0 auto;
+				width: 390px;
+			}
+		}
+
+		.progressBar {
+			position: absolute;
+			height: 10px;
+			bottom: 0px;
+			width: 100%;
+			background-color: $COLOR_MAIN_TERTIARY;
+			transform: scaleX(0);
+		}
+	}
+
+	.preloader {
+		visibility: hidden;
+
+		.loaderImage {
+			border-radius: 8px;
+			font-size: 30px;
+			position: absolute;
+			width: 312px;
+			height: 208px;
+			overflow: hidden;
+			top: 50vh;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		.loaderText {
+			position: absolute;
+			top: calc(50vh + 150px);
+			left: calc(50vw - 300px);
+			width: 600px;
+			margin: 0 auto;
+			text-align: center;
+
+			.loading {
+				font-size: 18px;
+				line-height: 1.04;
+				opacity: 0.5;
+				margin-bottom: 20px;
+			}
+
+			.hint {
+				font-size: 24px;
+				line-height: 1.34;
+			}
+		}
+	}
+}

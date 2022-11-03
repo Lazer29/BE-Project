@@ -1,0 +1,366 @@
+.GameView {
+	position: absolute;
+	height: 100%;
+	//display: none;
+
+	.contentSide {
+		//	background-color: $COLOR_MAIN_TERTIARY;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 50%;
+		height: 100%;
+		overflow: hidden;
+
+		@media (max-width: 960px) {
+			width: 100%;
+			height: 50%;
+		}
+
+		.ThreeScene {
+			position: absolute;
+		}
+
+		.letterToFind {
+			position: absolute;
+			font-size: 325px;
+			line-height: 0px;
+			color: $COLOR_MAIN_PRIMARY;
+			top: calc(50% - 5px);
+			left: calc(50% + 0px);
+			width: 50%;
+			text-align: center;
+			pointer-events: none;
+			//display: none;
+		}
+
+		.dot {
+			display: none;
+			position: absolute;
+			bottom: 80px;
+			left: 30px;
+			background-color: $COLOR_MAIN_PRIMARY;
+			border-radius: 50%;
+			pointer-events: none;
+			width: 23px;
+			height: 23px;
+		}
+
+		.button {
+			//display: none;
+			font-size: 30px;
+			width: 127px;
+			height: 25px;
+			border-radius: 30px;
+			color: $COLOR_MAIN_PRIMARY;
+			//background-color: $COLOR_MAIN_SECONDARY;
+			margin: 11px auto 0 auto;
+			line-height: 2.2;
+			cursor: pointer;
+			pointer-events: all;
+			overflow: hidden;
+			position: relative;
+			//	border: 1px solid #fff6df;
+			background-color: transparent;
+			border: 1px solid $COLOR_MAIN_PRIMARY;
+			bottom: 20px;
+			position: absolute;
+			left: calc(50% - 63px);
+
+			.innerBG {
+				//	overflow: hidden;
+				position: absolute;
+				//	display: block;
+				background-color: white;
+				width: 360px;
+				height: 344px;
+				top: -140px;
+				left: -4px;
+				border-radius: 50%;
+				transform: translateX(-360px) skewX(20deg);
+				pointer-events: none;
+			}
+
+			.innerText {
+				position: absolute;
+				width: 128px;
+				text-align: center;
+				top: -3px;
+				left: -0px;
+				font-size: 13.5px;
+				z-index: 1;
+				color: $COLOR_MAIN_PRIMARY;
+				pointer-events: none;
+			}
+		}
+		.findWord {
+			position: absolute;
+			bottom: 100px;
+
+			text-align: center;
+			width: 100%;
+			font-size: 77px;
+			letter-spacing: 2px;
+			color: $COLOR_MAIN_PRIMARY;
+			pointer-events: none;
+			line-height: 0;
+		}
+
+		.backArrow {
+			position: absolute;
+			left: 26px;
+			top: 26px;
+			cursor: pointer;
+			transform: translateX(-100px);
+		}
+	}
+
+	.rightSide {
+		overflow: hidden;
+		//	background-color: #fff;
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		width: 50%;
+		height: 100%;
+		font-size: 14px;
+		color: #fff6df;
+		display: none;
+
+		@media (max-width: 960px) {
+			top: 50%;
+			left: 0%;
+			width: 100%;
+			height: 50%;
+		}
+
+		.rightSideBG {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #fff6df;
+		}
+
+		.videoCanvasContainer {
+			filter: contrast(150%) grayscale(100%) brightness(20%);
+			position: absolute;
+			width: 50%;
+			height: 100%;
+			//	z-index: 1000;
+
+			/*	@media (max-width: 960px) {
+				width: 100%;
+				height: 50%;
+			}*/
+		}
+
+		.canvasOverlayContainer {
+			position: absolute;
+			width: 50%;
+			height: 100%;
+		}
+
+		.time {
+			position: absolute;
+			font-size: 13px;
+			top: 20px;
+			left: 20px;
+		}
+
+		.score {
+			top: 15px;
+			position: absolute;
+			width: 100%;
+			font-size: 20px;
+			text-align: center;
+
+			.scoreNumber {
+			}
+		}
+
+		.percentageCorrect {
+			position: absolute;
+			font-size: 30px;
+			top: calc(50% - 18px);
+			left: 20px;
+			color: #fff6df;
+		}
+
+		.percentageMatch {
+			position: absolute;
+			font-size: 40px;
+			top: calc(50% - 25px);
+			left: 20px;
+			color: $COLOR_MAIN_PRIMARY;
+			opacity: 0;
+		}
+
+		.helloThere {
+			background-color: #683aff;
+			position: absolute;
+			height: 300px;
+			width: 480px;
+			left: calc(50% - 240px);
+			top: calc(50% - 150px);
+			padding: 40px;
+			text-align: center;
+			opacity: 1;
+			font-size: 20px;
+			color: $COLOR_MAIN_SECONDARY;
+
+			.header {
+				margin-top: 32px;
+				font-size: 22px;
+			}
+
+			.subHeader {
+				margin-top: 20px;
+				font-size: 35px;
+			}
+		}
+
+		.showYourHand {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			text-align: center;
+			opacity: 0;
+		}
+
+		.turnHandToTheSide {
+			top: 50%;
+			width: 100%;
+			text-align: center;
+			opacity: 0;
+		}
+
+		.turnHandDownWards {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			text-align: center;
+			opacity: 0;
+		}
+
+		.turnHandUpWards {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			text-align: center;
+			opacity: 0;
+		}
+
+		.moveHandLeftOrRight {
+			position: absolute;
+			bottom: -20px;
+			width: 100%;
+			text-align: center;
+		}
+
+		.fingerDescription {
+			display: none;
+
+			position: absolute;
+			color: $COLOR_MAIN_SECONDARY;
+			width: 400px;
+			left: calc(50% - 200px);
+			height: auto;
+			bottom: 20px;
+			font-size: 15px;
+			line-height: 20px;
+			box-sizing: content-box;
+			transform: translateY(400px);
+			//	padding-top: 10px;
+			//	padding-bottom: 10px;
+			//	background-color: #623aff;
+
+			//-webkit-perspective: 440px;
+			//perspective: 440px;
+			.thumb {
+				//	background-color: #623aff;
+			}
+
+			.index {
+				//	background-color: #6666ff;
+			}
+
+			.middle {
+				//	background-color: #8888ff;
+			}
+
+			.ring {
+				//	background-color: #aaaaff;
+			}
+
+			.pinky {
+				//	background-color: #bbbbff;
+			}
+
+			.finger {
+				background-color: #683aff;
+				overflow: hidden;
+
+				.fingerContent {
+					padding-left: 20px;
+					padding-right: 20px;
+					padding-top: 10px;
+					padding-bottom: 5px;
+				}
+			}
+		}
+	}
+
+	.nextLetterOverlay {
+		overflow: hidden;
+		display: none;
+		position: absolute;
+		top: calc(50% - 250px);
+		left: calc(50% - 400px);
+		right: auto;
+		width: 800px;
+		height: 500px;
+		background-color: #683aff;
+		clip: rect(0px 400px 500px 400px);
+
+		.centerContent {
+			position: absolute;
+			width: 100%;
+			top: calc(50% - 280px);
+
+			.nextWordIs {
+				width: 800px;
+				text-align: center;
+				font-size: 30px;
+				margin-top: 140px;
+				margin-bottom: 100px;
+				color: #fff6df;
+			}
+
+			.word {
+				width: 800px;
+				text-align: center;
+				font-size: 150px;
+				line-height: 0px;
+			}
+		}
+
+		.wordCount {
+			position: absolute;
+			width: 800px;
+			text-align: center;
+			font-size: 16px;
+
+			color: #fff6df;
+			bottom: 40px;
+		}
+
+		.progressBar {
+			position: absolute;
+			height: 10px;
+			bottom: 0px;
+			width: 800px;
+			background-color: $COLOR_MAIN_SECONDARY;
+			transform: scaleX(0);
+		}
+	}
+}

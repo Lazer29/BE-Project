@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Fingerspelling with Machine Learning</title>
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+
+    <meta property="og:title" content="Fingerspelling with Machine Learning" />
+    <meta property="og:site_name" content="Fingerspelling with Machine Learning" />
+    <meta property="og:url" content="https://fingerspelling.xyz" />
+    <meta property="og:description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fingerspelling.xyz/assets/meta.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hellomondaycom" />
+    <meta name="twitter:creator" content="@hellomondaycom" />
+    <meta name="twitter:title" content="Fingerspelling with Machine Learning" />
+    <meta name="twitter:description"
+        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
+    <meta name="twitter:image" content="https://fingerspelling.xyz/assets/meta.png" />
+
+    <meta name="theme-color" content="#ffffff" />
+    <!-- <link rel="stylesheet" href="../static/css/bundle.css" />
+    <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bundle.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            (i[r] =
+                i[r] ||
+                function () {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+                (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-193026365-1', { storage: 'none' });
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <!-- <h1>Human Computer Interaction</h1>
+    <div class="main-box">
+        <div class="cam">
+            <img src="{{ url_for('video_feed') }}" />
+        </div>
+    </div> -->
+
+    <div class="right">
+
+        <!-- <a href="about.html" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a> -->
+        <a href="{{ url_for('about') }}" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a>
+        <div class="right-container">
+            <div class="right-words">
+                <!-- <p>
+                    <span id="latest_value1"></span>
+                </p> -->
+                <div>
+                    <div class="container">
+                        <div class="main-sentence">
+                            <p class="sentence">
+                                <span id="latest_value" contenteditable="true" spellcheck="true"></span>
+                                <svg id="speak" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 speak">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+                                </svg>
+                            </p>
+
+                            <div class="errors" id="errors">
+                                <div class="table-container">
+                                    <table class="responsive-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Errors</th>
+                                                <th scope="col">Suggestions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="errors-table"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="btn">
+                            <button class="open-btn whole-right">Show All Gestures</button>
+                        </div>
+                        <div class="popup popup1">
+                            <div class="popup-overlay"></div>
+                            <div class="main-popup main-pop1">
+                                <div class="popup-content popup-content1">
+                                    <span class="close-btn">&times;</span>
+                                    <div class="entire-box">
+                                        <div class="blank"></div>
+                                        <div class="img-content">
+                                            <!-- <div class="num">
+                                                <img src="../static/img/right/num.jfif" alt="num">
+                                            </div> -->
+                                            <div class="alpha">
+                                                <span> <span> A </span> <img src="../static/img/right/a.png"
+                                                        alt="A"></span>
+                                                <span> <span> B </span> <img src="../static/img/right/b.png"
+                                                        alt="B"></span>
+                                                <span> <span> C </span> <img src="../static/img/right/c.png"
+                                                        alt="C"></span>
+                                                <span> <span> D </span> <img src="../static/img/right/d.png"
+                                                        alt="D"></span>
+                                                <span> <span> E </span> <img src="../static/img/right/e.png"
+                                                        alt="E"></span>
+                                                <span> <span> F </span> <img src="../static/img/right/f.png"
+                                                        alt="F"></span>
+                                                <span> <span> G </span> <img src="../static/img/right/g.png"
+                                                        alt="G"></span>
+                                                <span> <span> H </span> <img src="../static/img/right/h.png"
+                                                        alt="H"></span>
+                                                <span> <span> I </span> <img src="../static/img/right/i.png"
+                                                        alt="I"></span>
+                                                <span> <span> J </span> <img src="../static/img/right/j.png"
+                                                        alt="J"></span>
+                                                <span> <span> K </span> <img src="../static/img/right/k.png"
+                                                        alt="K"></span>
+                                                <span> <span> L </span> <img src="../static/img/right/l.png"
+                                                        alt="L"></span>
+                                                <span> <span> M </span> <img src="../static/img/right/m.png"
+                                                        alt="M"></span>
+                                                <span> <span> N </span> <img src="../static/img/right/n.png"
+                                                        alt="N"></span>
+                                                <span> <span> O </span> <img src="../static/img/right/o.png"
+                                                        alt="O"></span>
+                                                <span> <span> P </span> <img src="../static/img/right/p.png"
+                                                        alt="P"></span>
+                                                <span> <span> Q </span> <img src="../static/img/right/q.png"
+                                                        alt="Q"></span>
+                                                <span> <span> R </span> <img src="../static/img/right/r.png"
+                                                        alt="R"></span>
+                                                <span> <span> S </span> <img src="../static/img/right/s.png"
+                                                        alt="S"></span>
+                                                <span> <span> T </span> <img src="../static/img/right/t.png"
+                                                        alt="T"></span>
+                                                <span> <span> U </span> <img src="../static/img/right/u.png"
+                                                        alt="U"></span>
+                                                <span> <span> V </span> <img src="../static/img/right/v.png"
+                                                        alt="V"></span>
+                                                <span> <span> W </span> <img src="../static/img/right/w.png"
+                                                        alt="W"></span>
+                                                <span> <span> X </span> <img src="../static/img/right/x.png"
+                                                        alt="X"></span>
+                                                <span> <span> Y </span> <img src="../static/img/right/y.png"
+                                                        alt="Y"></span>
+                                                <span> <span> Z </span> <img src="../static/img/right/z.png"
+                                                        alt="Z"></span>
+                                                <span> <span> Bs </span> <img src="../static/img/right/bs.png"
+                                                        alt="Bs"></span>
+                                                <span> <span> Space </span> <img src="../static/img/right/space.png"
+                                                        alt="Space"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-cam-box">
+                <div class="cam">
+                    <img src="{{ url_for('video_feed') }}" />
+                </div>
+            </div>
+        </div>
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.js"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.1/drawing_utils.js"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.1.1614621970/hands.js" crossorigin="anonymous"></script>
+
+<script src="//www.youtube.com/iframe_api"></script>
+<!-- <script src="../static/js/index.js"></script> -->
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script>
+
+    function getSuggestion(str) {
+        let res="";
+        for(let i=0;i<str.length;i++){
+            if(str[i] == ',')res += ' ';
+            else res += str[i];
+        }
+        return res;
+    }
+
+    let err = document.getElementById('errors');
+    err.style.display = "none";
+
+
+    var latest = document.getElementById("latest_value");
+    latest.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum officia autem eaque repudiandae itaque accusantium? Molestiae veritatis minima laudantium sapiente.";
+    setInterval(() => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '{{ url_for("stream") }}');
+        xhr.onload = function () {
+            latest.textContent = xhr.responseText;
+        }
+        xhr.send();
+    }, 100);
+
+
+    // 1st API 
+    setInterval(()=> {
+        let options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'X-RapidAPI-Key': '9ff800dbd3msh33c2555e9d61efep18060ejsn0510dae021e2',
+                'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com'
+            },
+            body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
+        };
+        
+        fetch('https://jspell-checker.p.rapidapi.com/check', options)
+            .then((response) => response.json())
+            .then(response => {
+                console.log(response);
+                console.log(response.elements[0].errors);
+                console.log(response.elements[0].errors[0].suggestions);
+                err.style.display = "block";
+
+                let table = document.getElementById('errors-table');
+                table.innerHTML = "";
+                for(let i=0;i<response.elements[0].errors.length;i++){
+                    let str = response.elements[0].errors[i].suggestions.toString();
+                    table.innerHTML += `
+                        <tr>
+                            <th scope="row">${response.elements[0].errors[i].word}</th>
+                            <td data-title="Released">${getSuggestion(str)}</td>
+                        </tr>
+                    `;
+                }
+            })
+            .catch((err) => console.error(err));
+    }, 10000);
+
+
+    // 2nd API
+    // setInterval(()=> {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("apikey", "4QfVYhmFvcttCsbizRyBGRSlLSjQjozm");
+    //     var requestOptions = {
+    //         method: 'GET',
+    //         redirect: 'follow',
+    //         headers: myHeaders
+    //     };
+    //     fetch(`https://api.apilayer.com/spell/spellchecker?q=${latest.textContent}`, requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             console.log(result);
+    //             console.log("res", result);
+    //             err.style.display = "block";
+    //             let table = document.getElementById('errors-table');
+    //             table.innerHTML = "";
+    //             for (let i = 0; i < result.corrections.length; i++) {
+    //                 let str = result.corrections[i].candidates.toString();
+    //                 table.innerHTML += `
+    //                 <tr>
+    //                     <th scope="row">${result.corrections[i].text}</th>
+    //                     <td data-title="Released">${getSuggestion(str)}</td>
+    //                 </tr>
+    //                 `;
+    //                 console.log(str);
+    //             }
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }, 10000);
+
+    
+
+
+
+
+
+</script>
+
+</html>
