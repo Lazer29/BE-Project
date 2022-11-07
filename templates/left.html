@@ -60,8 +60,8 @@
         <!-- <a href="about.html" style="text-decoration: none;"><h1 class="left-h1">Human Computer Interaction</h1></a> -->
         <a href="{{ url_for('about') }}" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a>
         <div class="left-container">
-            <div class="left-cam-box">
-                <div class="cam">
+            <div class="left-cam-box" style="display: flex; justify-content: center;">
+                <div class="cam" style="margin-top: 3.5rem;">
                     <img src="{{ url_for('video_feed') }}" />
                 </div>
             </div>
