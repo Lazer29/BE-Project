@@ -212,6 +212,7 @@
 <script src="//www.youtube.com/iframe_api"></script>
 <!-- <script src="../static/js/index_left.js"></script> -->
 <script src="{{ url_for('static', filename='js/index_left.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
 <script>
 
 
@@ -231,14 +232,20 @@
 
     var latest = document.getElementById("latest_value");
     latest.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est molestiae rem asperiores eligendi recusandae nisi saepe nulla sit rerum incidunt!";
-    setInterval(() => {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '{{ url_for("stream") }}');
-        xhr.onload = function () {
-            latest.textContent = xhr.responseText;
-        }
-        xhr.send();
-    }, 100);
+    // setInterval(() => {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('GET', '{{ url_for("stream") }}');
+    //     xhr.onload = function () {
+    //         latest.textContent = xhr.responseText;
+    //     }
+    //     xhr.send();
+    // }, 100);
+
+
+    var socket = io.connect();
+    socket.on("words", function(msg) {
+        latest.textContent = msg.word;
+    });
 
 
     // 1st API 

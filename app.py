@@ -1,8 +1,16 @@
 # /usr/bin/env python
 # -*- coding: utf-8 -*-
 from distutils.log import debug
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, request, session, redirect, url_for, Response
 from selenium.webdriver.common.by import By
+
+from flask_socketio import SocketIO, emit, join_room
+import platform
+
+# newly added
+from engineio.payload import Payload
+Payload.max_decode_packets = 200
+# till here 
 
 import csv
 import copy
@@ -19,8 +27,22 @@ import mediapipe as mp
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
+from threading import Lock
 
 app=Flask(__name__)
+
+# newly added
+app.config['SECRET_KEY'] = "thisismys3cr3tk3y"
+thread = None
+thread_lock = Lock()
+socketio = SocketIO(app, cors_allowed_origins='*')
+
+
+_users_in_room = {} # stores room wise user list
+_room_of_sid = {} # stores room joined by an used
+_name_of_sid = {} # stores display name of users
+
+# till here
 
 cnt = 0
 word = ""
@@ -513,6 +535,10 @@ def main():
 def index():
     return render_template('index.html')
 
+@app.route('/select')
+def select():
+    return render_template('select.html')
+
 @app.route('/choose')
 def choose():
     return render_template('choose.html')
@@ -532,6 +558,9 @@ def right():
 
 @app.route('/stream_time')
 def stream():
+    # while True:
+    #     socketio.emit('words', {'word': word})
+    #     socketio.sleep(1)
     def generate():
         yield word
     return app.response_class(generate(), mimetype='text/plain')
@@ -542,7 +571,95 @@ def about():
     return render_template('about.html')
 
 
+@app.route("/chat", methods=["GET", "POST"])
+def chat():
+    if request.method == "POST":
+        username = request.form['username']
+        room_id = request.form['room_id']
+        cam = request.form['cam']
+        mic = request.form['mic']
+        session[room_id] = {"name": username, "mute_audio": mic, "mute_video": cam}
+        return redirect(url_for("video",username=username,room_id=room_id,cam=cam,mic=mic))
+
+    return render_template("chat.html")
+
+@app.route("/video/<string:username>/<string:room_id>/<int:cam>/<int:mic>")
+def video(username,room_id,cam,mic):
+    print("seesions ",session)
+    if room_id not in session:
+        return redirect(url_for("chat", room_id=room_id))
+    # return render_template('video.html',username=username,room_id=room_id,cam=cam,mic=mic)
+    return render_template('video.html',room_id=room_id, display_name=session[room_id]["name"], mute_audio=session[room_id]["mute_audio"], mute_video=session[room_id]["mute_video"])
+
+
+
+# newly added
+@socketio.on("connect")
+def on_connect():
+    sid = request.sid
+    print("New socket connected ", sid)
+    
+
+@socketio.on("join-room")
+def on_join_room(data):
+    sid = request.sid
+    room_id = data["room_id"]
+    display_name = session[room_id]["name"]
+    
+    # register sid to the room
+    join_room(room_id)
+    _room_of_sid[sid] = room_id
+    _name_of_sid[sid] = display_name
+    
+    # broadcast to others in the room
+    print("[{}] New member joined: {}<{}>".format(room_id, display_name, sid))
+    emit("user-connect", {"sid": sid, "name": display_name}, broadcast=True, include_self=False, room=room_id)
+    
+    # add to user list maintained on server
+    if room_id not in _users_in_room:
+        _users_in_room[room_id] = [sid]
+        emit("user-list", {"my_id": sid}) # send own id only
+    else:
+        usrlist = {u_id:_name_of_sid[u_id] for u_id in _users_in_room[room_id]}
+        emit("user-list", {"list": usrlist, "my_id": sid}) # send list of existing users to the new member
+        _users_in_room[room_id].append(sid) # add new member to user list maintained on server
+
+    print("\nusers: ", _users_in_room, "\n")
+
+
+@socketio.on("disconnect")
+def on_disconnect():
+    sid = request.sid
+    room_id = _room_of_sid[sid]
+    display_name = _name_of_sid[sid]
+
+    print("[{}] Member left: {}<{}>".format(room_id, display_name, sid))
+    emit("user-disconnect", {"sid": sid}, broadcast=True, include_self=False, room=room_id)
+
+    _users_in_room[room_id].remove(sid)
+    if len(_users_in_room[room_id]) == 0:
+        _users_in_room.pop(room_id)
+
+    _room_of_sid.pop(sid)
+    _name_of_sid.pop(sid)
+
+    print("\nusers: ", _users_in_room, "\n")
+
+
+@socketio.on("data")
+def on_data(data):
+    sender_sid = data['sender_id']
+    target_sid = data['target_id']
+    if sender_sid != request.sid:
+        print("[Not supposed to happen!] request.sid and sender_id don't match!!!")
+
+    if data["type"] != "new-ice-candidate":
+        print('{} message from {} to {}'.format(data["type"], sender_sid, target_sid))
+    socketio.emit('data', data, room=target_sid)
+    
+# till here
 
 if __name__=='__main__':
     # main()
-    app.run(debug=True)
+    # app.run(debug=True)
+    socketio.run(app, debug=True)

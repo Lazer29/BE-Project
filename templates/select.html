@@ -57,25 +57,31 @@
 </head>
 
 <body>
-    <div class="whole">
+    <div class="whole whole-select">
         <div class="whole-container">
             <div class="whole-header">
                 <!-- <a href="about.html" style="text-decoration: none;"><h1 class="whole-h1">Human Computer Interaction</h1></a> -->
                 <a href="{{ url_for('about') }}" style="text-decoration: none;">
                     <h1 class="whole-h1">Human Computer Interaction</h1>
                 </a>
-                <div class="whole-instr">
-                    <h2 class="whole-h2">Are you left or right handed?</h2>
-                    <p class="whole-p">Choose the hand you want to use for communication.</p>
-                    <p class="whole-p">You should use your dominant hand.</p>
-
-                    <!-- <a href="left.html"> -->
-                    <a href="{{ url_for('left') }}">
-                        <button class="whole-left">Left</button></a>
-                    <!-- <a href="right.html"> -->
-                    <a href="{{ url_for('right') }}">
-                        <button class="whole-right">Right</button>
-                    </a>
+                <div class="whole-instr selection">
+                    <div class="selection-container">
+                        <div class="select-learn">
+                            <img src="../static/img/learn.jpg" alt="Learn">
+                            <p>Learn the basics of American Sign Language to interact with others.</p>
+                            <a href="{{ url_for('choose') }}">
+                                <button class="whole-left">Learn</button>
+                            </a>
+                            </a>
+                        </div>
+                        <div class="select-chat">
+                            <img src="../static/img/video-chat.jpg" alt="Chat">
+                            <p>Chat with others to upgrade your skills, and interact with your friends.</p>
+                            <a href="{{ url_for('chat') }}">
+                                <button class="whole-right">Chat</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
