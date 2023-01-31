@@ -5,8 +5,8 @@ var _peer_list = {};
 var protocol = window.location.protocol;
 var socket = io(protocol + '//' + document.domain + ':' + location.port, {autoConnect: false});
 var myVideo = document.getElementById("local_vid");
-var audioMuted = false;
-var videoMuted = false;
+audioMuted = !audioMuted;
+videoMuted = !videoMuted;
 
 
 document.addEventListener("DOMContentLoaded", (event)=>{

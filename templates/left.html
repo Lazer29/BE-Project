@@ -61,7 +61,7 @@
         <a href="{{ url_for('about') }}" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a>
         <div class="left-container">
             <div class="left-cam-box" style="display: flex; justify-content: center;">
-                <div class="cam" style="margin-top: 3.5rem;">
+                <div class="cam" id="add-cam" style="margin-top: 3.5rem;">
                     <img src="{{ url_for('video_feed') }}" />
                 </div>
             </div>
@@ -84,7 +84,7 @@
 
                         <div class="main-sentence main-sentence1">
                             <p class="sentence1">
-                                <span id="latest_value" contenteditable="true" spellcheck="true"></span>
+                                <span id="latest_value" contenteditable="true" spellcheck="true">{{ word }}</span>
                                 <svg id="speak_left" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 speak">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -212,7 +212,6 @@
 <script src="//www.youtube.com/iframe_api"></script>
 <!-- <script src="../static/js/index_left.js"></script> -->
 <script src="{{ url_for('static', filename='js/index_left.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
 <script>
 
 
@@ -231,57 +230,49 @@
 
 
     var latest = document.getElementById("latest_value");
-    latest.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est molestiae rem asperiores eligendi recusandae nisi saepe nulla sit rerum incidunt!";
-    // setInterval(() => {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open('GET', '{{ url_for("stream") }}');
-    //     xhr.onload = function () {
-    //         latest.textContent = xhr.responseText;
-    //     }
-    //     xhr.send();
-    // }, 100);
-
-
-    var socket = io.connect();
-    socket.on("words", function(msg) {
-        latest.textContent = msg.word;
-    });
-
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '{{ url_for("stream") }}');
+    xhr.onreadystatechange = function () {
+        var all_lines = xhr.responseText.split('\n');
+        last_line = all_lines.length - 2;
+        latest.textContent = all_lines[last_line];
+    }
+    xhr.send();
 
     // 1st API 
-    setInterval(()=> {
-        let options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': '9ff800dbd3msh33c2555e9d61efep18060ejsn0510dae021e2',
-                'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com'
-            },
-            body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
-        };
-        
-        fetch('https://jspell-checker.p.rapidapi.com/check', options)
-            .then((response) => response.json())
-            .then(response => {
-                console.log(response);
-                console.log(response.elements[0].errors);
-                console.log(response.elements[0].errors[0].suggestions);
-                err.style.display = "block";
-
-                let table = document.getElementById('errors-table');
-                table.innerHTML = "";
-                for(let i=0;i<response.elements[0].errors.length;i++){
-                    let str = response.elements[0].errors[i].suggestions.toString();
-                    table.innerHTML += `
-                        <tr>
-                            <th scope="row">${response.elements[0].errors[i].word}</th>
-                            <td data-title="Released">${getSuggestion(str)}</td>
-                        </tr>
-                    `;
-                }
-            })
-            .catch((err) => console.error(err));
-    }, 10000);
+    // setInterval(()=> {
+    //     let options = {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json',
+    //             'X-RapidAPI-Key': '9ff800dbd3msh33c2555e9d61efep18060ejsn0510dae021e2',
+    //             'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com'
+    //         },
+    //         body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
+    //     };
+    //     
+    //     fetch('https://jspell-checker.p.rapidapi.com/check', options)
+    //         .then((response) => response.json())
+    //         .then(response => {
+    //             console.log(response);
+    //             console.log(response.elements[0].errors);
+    //             console.log(response.elements[0].errors[0].suggestions);
+    //             err.style.display = "block";
+// 
+    //             let table = document.getElementById('errors-table');
+    //             table.innerHTML = "";
+    //             for(let i=0;i<response.elements[0].errors.length;i++){
+    //                 let str = response.elements[0].errors[i].suggestions.toString();
+    //                 table.innerHTML += `
+    //                     <tr>
+    //                         <th scope="row">${response.elements[0].errors[i].word}</th>
+    //                         <td data-title="Released">${getSuggestion(str)}</td>
+    //                     </tr>
+    //                 `;
+    //             }
+    //         })
+    //         .catch((err) => console.error(err));
+    // }, 10000);
 
 
     // 2nd API

@@ -220,15 +220,27 @@
 
 
     var latest = document.getElementById("latest_value");
-    latest.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum officia autem eaque repudiandae itaque accusantium? Molestiae veritatis minima laudantium sapiente.";
-    setInterval(() => {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '{{ url_for("stream") }}');
-        xhr.onload = function () {
-            latest.textContent = xhr.responseText;
-        }
-        xhr.send();
-    }, 100);
+    // latest.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum officia autem eaque repudiandae itaque accusantium? Molestiae veritatis minima laudantium sapiente.";
+    // setInterval(() => {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('GET', '{{ url_for("stream") }}');
+    //     xhr.onload = function () {
+    //         latest.textContent = xhr.responseText;
+    //     }
+    //     xhr.send();
+    // }, 100);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '{{ url_for("stream") }}');
+    xhr.onreadystatechange = function () {
+        var all_lines = xhr.responseText.split('\n');
+        last_line = all_lines.length - 2;
+        latest.textContent = all_lines[last_line];
+        // if (xhr.readyState == XMLHttpRequest.DONE) {
+        //     /*alert("The End of Stream");*/
+        //     latest.textContent = "The End of Stream"
+        // }
+    }
+    xhr.send();    
 
 
     // 1st API 

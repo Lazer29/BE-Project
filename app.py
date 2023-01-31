@@ -33,9 +33,9 @@ app=Flask(__name__)
 
 # newly added
 app.config['SECRET_KEY'] = "thisismys3cr3tk3y"
-thread = None
-thread_lock = Lock()
-socketio = SocketIO(app, cors_allowed_origins='*')
+# thread = None
+# thread_lock = Lock()
+socketio = SocketIO(app)
 
 
 _users_in_room = {} # stores room wise user list
@@ -558,11 +558,12 @@ def right():
 
 @app.route('/stream_time')
 def stream():
-    # while True:
-    #     socketio.emit('words', {'word': word})
-    #     socketio.sleep(1)
     def generate():
-        yield word
+        while True:
+            val = word
+            val += "\n"
+            yield val
+            # time.sleep(1)
     return app.response_class(generate(), mimetype='text/plain')
 
 
