@@ -29,7 +29,7 @@ window.addEventListener('click', (e) => {
 var latest = document.getElementById("latest_value");
 var msg = new SpeechSynthesisUtterance();
 const speaker = document.querySelector('#speak_left');
-speaker.addEventListener('click',()=>{
+speaker.addEventListener('click', () => {
 	msg.text = latest.textContent;
 	window.speechSynthesis.speak(msg);
 });

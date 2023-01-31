@@ -67,7 +67,9 @@
     <div class="right">
 
         <!-- <a href="about.html" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a> -->
-        <a href="{{ url_for('about') }}" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a>
+        <a href="{{ url_for('about') }}" style="text-decoration: none;">
+            <h1 class="right-h1">Human Computer Interaction</h1>
+        </a>
         <div class="right-container">
             <div class="right-words">
                 <!-- <p>
@@ -182,8 +184,8 @@
                     </div>
                 </div>
             </div>
-            <div class="right-cam-box" style="display: flex; justify-content: center;">
-                <div class="cam" style="margin-top: 3.5rem;">
+            <div class="right-cam-box">
+                <div class="cam">
                     <img src="{{ url_for('video_feed') }}" />
                 </div>
             </div>
@@ -207,9 +209,9 @@
 <script>
 
     function getSuggestion(str) {
-        let res="";
-        for(let i=0;i<str.length;i++){
-            if(str[i] == ',')res += ' ';
+        let res = "";
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] == ',') res += ' ';
             else res += str[i];
         }
         return res;
@@ -240,11 +242,11 @@
         //     latest.textContent = "The End of Stream"
         // }
     }
-    xhr.send();    
+    xhr.send();
 
 
     // 1st API 
-    setInterval(()=> {
+    setInterval(() => {
         let options = {
             method: 'POST',
             headers: {
@@ -254,7 +256,7 @@
             },
             body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
         };
-        
+
         fetch('https://jspell-checker.p.rapidapi.com/check', options)
             .then((response) => response.json())
             .then(response => {
@@ -265,7 +267,7 @@
 
                 let table = document.getElementById('errors-table');
                 table.innerHTML = "";
-                for(let i=0;i<response.elements[0].errors.length;i++){
+                for (let i = 0; i < response.elements[0].errors.length; i++) {
                     let str = response.elements[0].errors[i].suggestions.toString();
                     table.innerHTML += `
                         <tr>
@@ -310,7 +312,7 @@
     //         .catch(error => console.log('error', error));
     // }, 10000);
 
-    
+
 
 
 

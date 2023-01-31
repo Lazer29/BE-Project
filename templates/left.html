@@ -58,10 +58,12 @@
 <body>
     <div class="left">
         <!-- <a href="about.html" style="text-decoration: none;"><h1 class="left-h1">Human Computer Interaction</h1></a> -->
-        <a href="{{ url_for('about') }}" style="text-decoration: none;"><h1 class="right-h1">Human Computer Interaction</h1></a>
+        <a href="{{ url_for('about') }}" style="text-decoration: none;">
+            <h1 class="right-h1">Human Computer Interaction</h1>
+        </a>
         <div class="left-container">
-            <div class="left-cam-box" style="display: flex; justify-content: center;">
-                <div class="cam" id="add-cam" style="margin-top: 3.5rem;">
+            <div class="left-cam-box" id="left-cam-box">
+                <div class="cam" id="add-cam">
                     <img src="{{ url_for('video_feed') }}" />
                 </div>
             </div>
@@ -115,7 +117,7 @@
 
 
 
-                        
+
                         <div class="btn btn1">
                             <button class="open-btn open-btn1 whole-left">Show All Gestures</button>
                         </div>
@@ -198,7 +200,7 @@
             </div>
         </div>
     </div>
-    
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js" crossorigin="anonymous"></script>
@@ -216,9 +218,9 @@
 
 
     function getSuggestion(str) {
-        let res="";
-        for(let i=0;i<str.length;i++){
-            if(str[i] == ',')res += ' ';
+        let res = "";
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] == ',') res += ' ';
             else res += str[i];
         }
         return res;
@@ -240,39 +242,39 @@
     xhr.send();
 
     // 1st API 
-    // setInterval(()=> {
-    //     let options = {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //             'X-RapidAPI-Key': '9ff800dbd3msh33c2555e9d61efep18060ejsn0510dae021e2',
-    //             'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com'
-    //         },
-    //         body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
-    //     };
-    //     
-    //     fetch('https://jspell-checker.p.rapidapi.com/check', options)
-    //         .then((response) => response.json())
-    //         .then(response => {
-    //             console.log(response);
-    //             console.log(response.elements[0].errors);
-    //             console.log(response.elements[0].errors[0].suggestions);
-    //             err.style.display = "block";
-// 
-    //             let table = document.getElementById('errors-table');
-    //             table.innerHTML = "";
-    //             for(let i=0;i<response.elements[0].errors.length;i++){
-    //                 let str = response.elements[0].errors[i].suggestions.toString();
-    //                 table.innerHTML += `
-    //                     <tr>
-    //                         <th scope="row">${response.elements[0].errors[i].word}</th>
-    //                         <td data-title="Released">${getSuggestion(str)}</td>
-    //                     </tr>
-    //                 `;
-    //             }
-    //         })
-    //         .catch((err) => console.error(err));
-    // }, 10000);
+    setInterval(() => {
+        let options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'X-RapidAPI-Key': '9ff800dbd3msh33c2555e9d61efep18060ejsn0510dae021e2',
+                'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com'
+            },
+            body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
+        };
+
+        fetch('https://jspell-checker.p.rapidapi.com/check', options)
+            .then((response) => response.json())
+            .then(response => {
+                console.log(response);
+                console.log(response.elements[0].errors);
+                console.log(response.elements[0].errors[0].suggestions);
+                err.style.display = "block";
+
+                let table = document.getElementById('errors-table');
+                table.innerHTML = "";
+                for (let i = 0; i < response.elements[0].errors.length; i++) {
+                    let str = response.elements[0].errors[i].suggestions.toString();
+                    table.innerHTML += `
+                        <tr>
+                            <th scope="row">${response.elements[0].errors[i].word}</th>
+                            <td data-title="Released">${getSuggestion(str)}</td>
+                        </tr>
+                    `;
+                }
+            })
+            .catch((err) => console.error(err));
+    }, 10000);
 
 
     // 2nd API
