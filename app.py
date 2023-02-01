@@ -33,8 +33,6 @@ app=Flask(__name__)
 
 # newly added
 app.config['SECRET_KEY'] = "thisismys3cr3tk3y"
-# thread = None
-# thread_lock = Lock()
 socketio = SocketIO(app)
 
 
@@ -519,6 +517,14 @@ def main():
 
             # debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number, word)
+            f = open("./templates/word.html", "w")
+            f.write("<html>\n<head>\n<title>\nOutput Data in an HTML file\n \
+           </title>\n</head> <body>\n")
+            f.close()
+            f = open("./templates/word.html", "a")
+            f.write(word)
+            f.write("\n</body></html>")
+            f.close()
             # Screen reflection #############################################################
             # cv.imshow('Hand Gesture Recognition', debug_image)
 
@@ -563,13 +569,20 @@ def stream():
             val = word
             val += "\n"
             yield val
-            # time.sleep(1)
     return app.response_class(generate(), mimetype='text/plain')
+
+@app.route('/word')
+def word_display():
+    return render_template("word.html")
 
 
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/analytics')
+def analytics():
+    return render_template('analytics.html')
 
 
 @app.route("/chat", methods=["GET", "POST"])

@@ -155,6 +155,17 @@ h1 {
   color: black;
 }
 
+.camopen {
+  height: 4rem;
+  width: 4rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-radius: 1rem;
+  align-self: center;
+  cursor: pointer;
+}
+
 /* right */
 .sentence {
   justify-content: center;
@@ -1496,4 +1507,20 @@ h1 {
 
 .closebtn:hover {
   color: black;
+}
+
+.home-logo {
+  position: absolute;
+  top: 2%;
+  left: 88%;
+  height: 2.3rem;
+  width: 2.3rem;
+}
+
+.analysis-logo {
+  position: absolute;
+  top: 2%;
+  left: 92%;
+  height: 2.3rem;
+  width: 2.3rem;
 }

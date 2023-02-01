@@ -55,55 +55,14 @@
         ga('send', 'pageview');
     </script>
 </head>
-
 <body>
-    <div class="whole whole-select">
-        <div class="whole-container">
-            <div class="whole-header">
-                <!-- <a href="about.html" style="text-decoration: none;"><h1 class="whole-h1">Human Computer Interaction</h1></a> -->
-                <a href="{{ url_for('about') }}" style="text-decoration: none;">
-                    <h1 class="whole-h1">Human Computer Interaction</h1>
-                </a>
-                <div class="whole-instr selection">
-                    <div class="selection-container">
-                        <div class="select-learn">
-                            <img src="../static/img/learn.jpg" alt="Learn">
-                            <p>Learn the basics of American Sign Language to interact with others.</p>
-                            <a href="{{ url_for('choose') }}">
-                                <button class="whole-left">Learn</button>
-                            </a>
-                            </a>
-                        </div>
-                        <div class="select-chat">
-                            <img src="../static/img/video-chat.jpg" alt="Chat">
-                            <p>Chat with others to upgrade your skills, and interact with your friends.</p>
-                            <a href="{{ url_for('chat') }}">
-                                <button class="whole-right">Chat</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Analytics</h1>
     <a href="{{ url_for('index') }}">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#683aff"
-            class="w-6 h-6 home-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor"
+            class="w-6 h-6 home-logo" style="left: 92%;">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
     </a>
-    <a href="{{ url_for('analytics') }}">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#683aff"
-            class="w-6 h-6 analysis-logo">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-        </svg>
-    </a>
-
-
 </body>
-<!-- <script src="../static/js/index.js"></script> -->
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
 </html>
