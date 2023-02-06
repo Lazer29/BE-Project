@@ -252,6 +252,16 @@
     //     // }
     // }
     // xhr.send();
+    setInterval(()=>{
+        var latest = document.getElementById('latest_value');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '{{ url_for("stream") }}');
+        console.log(xhr);
+        xhr.onload = function () {
+            latest.textContent = xhr.responseText;
+        }
+        xhr.send();
+    },100)
 
     function camopen() {
         document.getElementById('right-cam-box').innerHTML = `

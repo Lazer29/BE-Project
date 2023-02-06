@@ -17,6 +17,7 @@ import copy
 import time
 import argparse
 import itertools
+import threading
 from threading import Timer
 from collections import Counter
 from collections import deque
@@ -517,14 +518,18 @@ def main():
 
             # debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number, word)
-            f = open("./templates/word.html", "w")
-            f.write("<html>\n<head>\n<title>\nOutput Data in an HTML file\n \
-           </title>\n</head> <body>\n")
-            f.close()
-            f = open("./templates/word.html", "a")
+        #     f = open("./templates/word.html", "w")
+        #     f.write("<html>\n<head>\n<title>\n \
+        #    </title>\n<script src='index_left.js'></script>\n</head> <body>\n<div id='texts'>")
+        #     f.close()
+        #     f = open("./templates/word.html", "a")
+        #     f.write(word)
+        #     f.write("\n</div>\n</body></html>")
+        #     f.close()
+            f=open("./static/word.txt","w")
             f.write(word)
-            f.write("\n</body></html>")
             f.close()
+            
             # Screen reflection #############################################################
             # cv.imshow('Hand Gesture Recognition', debug_image)
 
@@ -565,16 +570,19 @@ def right():
 @app.route('/stream_time')
 def stream():
     def generate():
-        while True:
-            val = word
-            val += "\n"
-            yield val
+        # while True:
+        #     val = word
+        #     val += "\n"
+        #     yield val
+        yield word
     return app.response_class(generate(), mimetype='text/plain')
 
-@app.route('/word')
+@app.route('/word_display')
 def word_display():
-    return render_template("word.html")
-
+    # def getWord():
+    #     yield word
+    # return word
+    return render_template('word.html')
 
 @app.route('/about')
 def about():

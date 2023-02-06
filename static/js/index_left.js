@@ -34,4 +34,3 @@ speaker.addEventListener('click', () => {
 	window.speechSynthesis.speak(msg);
 });
 
-
