@@ -7,23 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>words</h1>
-    <div id="value">
-
-    </div>
+    hello
 </body>
 <script>
-    setInterval(()=>{
-        var latest = document.getElementById("value");
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/static/word.txt');
-        console.log(xhr);
-        xhr.onload = function () {
-            latest.textContent = xhr.responseText;
-        }
-        xhr.send();
-    },100);
-
-
+    console.log("{{response}}");
 </script>
 </html>

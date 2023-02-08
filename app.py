@@ -1,7 +1,7 @@
 # /usr/bin/env python
 # -*- coding: utf-8 -*-
 from distutils.log import debug
-from flask import Flask, render_template, request, session, redirect, url_for, Response
+from flask import Flask, render_template, request, session, redirect, url_for, Response, jsonify
 from selenium.webdriver.common.by import By
 
 from flask_socketio import SocketIO, emit, join_room
@@ -541,7 +541,6 @@ def main():
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -570,11 +569,11 @@ def right():
 @app.route('/stream_time')
 def stream():
     def generate():
-        # while True:
-        #     val = word
-        #     val += "\n"
-        #     yield val
-        yield word
+        while True:
+            val = word
+            val += "\n"
+            yield val
+        # yield word
     return app.response_class(generate(), mimetype='text/plain')
 
 @app.route('/word_display')

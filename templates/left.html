@@ -7,27 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="pragma" content="no-cache" />
-    <title>Fingerspelling with Machine Learning</title>
-
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="description"
-        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
-
-    <meta property="og:title" content="Fingerspelling with Machine Learning" />
-    <meta property="og:site_name" content="Fingerspelling with Machine Learning" />
-    <meta property="og:url" content="https://fingerspelling.xyz" />
-    <meta property="og:description"
-        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://fingerspelling.xyz/assets/meta.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@hellomondaycom" />
-    <meta name="twitter:creator" content="@hellomondaycom" />
-    <meta name="twitter:title" content="Fingerspelling with Machine Learning" />
-    <meta name="twitter:description"
-        content="Fingerspelling.xyz uses your webcam and machine learning to analyze your hand shapes so you can learn to sign the American Sign Language alphabet." />
-    <meta name="twitter:image" content="https://fingerspelling.xyz/assets/meta.png" />
+    <title>Human Computer Interaction</title>
 
     <meta name="theme-color" content="#ffffff" />
     <!-- <link rel="stylesheet" href="../static/css/bundle.css" />
@@ -64,9 +44,9 @@
         </a>
         <div class="left-container">
             <div class="left-cam-box" id="left-cam-box">
-                <!-- <div class="cam" id="add-cam"> -->
-                    <!-- <img src="{{ url_for('video_feed') }}" /> -->
-                <!-- </div> -->
+                <!-- <div class="cam" id="add-cam">
+                    <img src="{{ url_for('video_feed') }}" />
+                </div> -->
                 <button onclick="camopen()" class="camopen">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -89,7 +69,7 @@
                                     <!-- <iframe src="{{ url_for('word_display') }}" id="frame" width=200 height=400 frameborder=0 ></iframe> -->
                                     <!-- <div data-include="{{ url_for('word_display') }}"></div> -->
                                     <!-- <iframe src="{{ url_for('word_display') }}"></iframe> -->
-                                    <!-- <iframe src="/static/word.txt" frameBorder="0" id="frame" scrolling="auto" height="100%" width="100%"></iframe> -->
+                                    <iframe src="/static/word.txt" frameBorder="0" id="frame" scrolling="auto" height="100%" width="100%"></iframe>
                                 </span>
                                 <svg id="speak_left" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 speak">
@@ -244,6 +224,20 @@
                 <img src="video_feed" />
             </div>
         `;
+        setTimeout(()=>{
+            setInterval(()=>{
+                // var latest = document.getElementById('latest_value');
+                // var xhr = new XMLHttpRequest();
+                // xhr.open('GET', '{{ url_for("stream") }}');
+                // console.log(xhr);
+                // xhr.onload = function () {
+                //     latest.textContent = xhr.responseText;
+                // }
+                // xhr.send();
+                document.getElementById('frame').src = '/static/word.txt';
+            },1000);
+        },10000);
+        
     }
 
     // 1st API 
@@ -258,7 +252,6 @@
             body: `{"language":"enUS","fieldvalues":"${latest.textContent}","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}`
         };
 
-        document.getElementById('frame').src = '/static/word.txt';
         fetch('https://jspell-checker.p.rapidapi.com/check', options)
             .then((response) => response.json())
             .then(response => {
@@ -281,16 +274,16 @@
             })
             .catch((err) => console.error(err));
     }, 10000);
-    setInterval(()=>{
-        var latest = document.getElementById("latest_value");
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/static/word.txt');
-        console.log(xhr);
-        xhr.onload = function () {
-            latest.textContent = xhr.responseText;
-        }
-        xhr.send();
-    },100);
+    // setInterval(()=>{
+    //    var latest = document.getElementById("latest_value");
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', '{{ url_for("stream") }}');
+    //    console.log(xhr);
+    //    xhr.onload = function () {
+    //        latest.textContent = xhr.responseText;
+    //    }
+    //    xhr.send();
+    // },100);
 
     // setInterval(()=>{
     //     var latest = document.getElementById('latest_value');
