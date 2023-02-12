@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from flask_socketio import SocketIO, emit, join_room
 import platform
+import os
 
 # newly added
 from engineio.payload import Payload
@@ -518,14 +519,6 @@ def main():
 
             # debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number, word)
-        #     f = open("./templates/word.html", "w")
-        #     f.write("<html>\n<head>\n<title>\n \
-        #    </title>\n<script src='index_left.js'></script>\n</head> <body>\n<div id='texts'>")
-        #     f.close()
-        #     f = open("./templates/word.html", "a")
-        #     f.write(word)
-        #     f.write("\n</div>\n</body></html>")
-        #     f.close()
             f=open("./static/word.txt","w")
             f.write(word)
             f.close()
@@ -555,6 +548,8 @@ def choose():
 
 @app.route('/video_feed')
 def video_feed():
+    global word
+    word=""
     return Response(main(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/left')
@@ -569,19 +564,13 @@ def right():
 @app.route('/stream_time')
 def stream():
     def generate():
-        while True:
-            val = word
-            val += "\n"
-            yield val
-        # yield word
+        # while True:
+        #     val = word
+        #     val += "\n"
+        #     yield val
+        yield word
     return app.response_class(generate(), mimetype='text/plain')
 
-@app.route('/word_display')
-def word_display():
-    # def getWord():
-    #     yield word
-    # return word
-    return render_template('word.html')
 
 @app.route('/about')
 def about():

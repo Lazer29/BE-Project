@@ -1512,7 +1512,7 @@ h1 {
 .home-logo {
   position: absolute;
   top: 2%;
-  left: 88%;
+  left: 84%;
   height: 2.3rem;
   width: 2.3rem;
 }
@@ -1520,7 +1520,188 @@ h1 {
 .analysis-logo {
   position: absolute;
   top: 2%;
+  left: 88%;
+  height: 2.3rem;
+  width: 2.3rem;
+}
+
+.aboutUs-logo {
+  position: absolute;
+  top: 2%;
   left: 92%;
   height: 2.3rem;
   width: 2.3rem;
+}
+
+.para {
+  position: absolute;
+  color: white;
+}
+
+.alpha-pos {
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.displayedImg {
+  height: 23rem;
+  width: 23rem;
+}
+
+.spText {
+  color: white;
+  position: absolute;
+  font-size: 5rem;
+  padding: 1rem;
+}
+
+.makeGesture {
+  text-align: center;
+  color: #683aff;
+  margin-top: -1rem;
+  padding: 0.5rem;
+}
+
+.pgBar {
+  display: flex;
+  justify-content: center;
+}
+
+.learningAnalyzer {
+  margin: 1rem;
+  margin-top: -4rem;
+}
+
+.yourWord {
+  color: #683aff;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.score, .accuracy, .suggestion {
+  color: #683aff;
+}
+
+@keyframes growProgressBar {
+  0%, 33% { --pgPercentage: 0; }
+  100% { --pgPercentage: var(--value); }
+}
+
+@property --pgPercentage {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+div[role="progressbar"] {
+  --size: 12rem;
+  /* --fg: #369; */
+  --fg: #683aff;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: 
+    radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+    ;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) '%';
+}
+
+.learnImg {
+  margin-top: -2rem;
+}
+
+.learnImg img {
+  border-radius: 1rem;
+}
+
+#timer {
+  position: absolute;
+  top: 39%;
+  left: 40.5%;
+  transition: ease-in-out;
+}
+
+.base-timer {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  /* color: rgb(65, 184, 131); */
+  color: white;
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.analytics {
+  height: 90vh;
+  margin: 1rem;
+}
+
+.classification, .confusion-matrix, .model-accuracy, .model-loss, .model-validation-accuracy, .model-validation-loss {
+  margin: 1rem;
+}
+
+.classification p, .confusion-matrix p, .model-accuracy p, .model-loss p, .model-validation-accuracy p, .model-validation-loss p {
+  text-align: justify;
+  padding: 0.5rem;
+}
+
+.txtCenter {
+  text-align: center;
 }
