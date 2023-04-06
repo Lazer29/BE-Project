@@ -671,5 +671,5 @@ def on_data(data):
 
 if __name__=='__main__':
     # main()
-    # app.run(debug=True)
-    socketio.run(app, debug=True)
+     app.run(debug=True)
+    #socketio.run(app, debug=True)

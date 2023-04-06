@@ -1705,3 +1705,8 @@ div[role="progressbar"]::before {
 .txtCenter {
   text-align: center;
 }
+
+.home-btn2{
+    position: relative;
+    left: 2 rem;
+  }
