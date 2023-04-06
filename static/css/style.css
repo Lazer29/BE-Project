@@ -1510,9 +1510,9 @@ h1 {
 }
 
 .home-logo {
-  position: absolute;
+  position: relative;
   top: 2%;
-  left: 84%;
+  left: 10rem;
   height: 2.3rem;
   width: 2.3rem;
 }
