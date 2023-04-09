@@ -1512,7 +1512,7 @@ h1 {
 .home-logo {
   position: relative;
   top: 2%;
-  left: 10rem;
+  left: 2rem;
   height: 2.3rem;
   width: 2.3rem;
 }
@@ -1706,7 +1706,3 @@ div[role="progressbar"]::before {
   text-align: center;
 }
 
-.home-btn2{
-    position: relative;
-    left: 2 rem;
-  }
